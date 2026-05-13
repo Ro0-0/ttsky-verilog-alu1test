@@ -1,6 +1,41 @@
+yaml_version: 1
+
 project:
-  title:      "4-bit ALU"
-  author:     "Roo0_0"
-  description: "Simple 4-bit ALU with add subtract and logic ops"
-  language:   "Verilog"
-  top_module: "tt_um_roo_alu"
+  title:       "4-bit ALU"
+  author:      "Ro0-0"
+  description: "Simple 4-bit ALU with add subtract multiply and logic operations"
+  language:    "Verilog"
+  top_module:  "tt_um_ro00_alu"
+  tiles:       "1x1"
+  clock_hz:    0
+  source_files:
+    - project.v
+
+pinout:
+  ui:
+    - "a[0]"
+    - "a[1]"
+    - "a[2]"
+    - "a[3]"
+    - "b[0]"
+    - "b[1]"
+    - "b[2]"
+    - "b[3]"
+  uo:
+    - "result[0]"
+    - "result[1]"
+    - "result[2]"
+    - "result[3]"
+    - "result[4]"
+    - "none"
+    - "none"
+    - "none"
+  uio:
+    - "op[0]"
+    - "op[1]"
+    - "op[2]"
+    - "none"
+    - "none"
+    - "none"
+    - "none"
+    - "none"
