@@ -1,6 +1,6 @@
 project:
   title:      "4-bit ALU"
-  author:     "Roo"
+  author:     "Roo0_0"
   description: "Simple 4-bit ALU with add subtract and logic ops"
   language:   "Verilog"
   top_module: "tt_um_roo_alu"
