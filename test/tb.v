@@ -1,49 +1,49 @@
-`default_nettype none
-`timescale 1ns / 1ps
+module alu_tb;
 
-/* This testbench just instantiates the module and makes some convenient wires
-   that can be driven / tested by the cocotb test.py.
-*/
-module tb ();
+    // inputs as reg, outputs as wire
+    reg  [3:0] a;
+    reg  [3:0] b;
+    reg  [2:0] op;
+    wire [4:0] result;
 
-  // Dump the signals to a FST file. You can view it with gtkwave or surfer.
-  initial begin
-    $dumpfile("tb.fst");
-    $dumpvars(0, tb);
-    #1;
-  end
+    // connect testbench to your ALU
+    alu uut (
+        .a(a),
+        .b(b),
+        .op(op),
+        .result(result)
+    );
 
-  // Wire up the inputs and outputs:
-  reg clk;
-  reg rst_n;
-  reg ena;
-  reg [7:0] ui_in;
-  reg [7:0] uio_in;
-  wire [7:0] uo_out;
-  wire [7:0] uio_out;
-  wire [7:0] uio_oe;
-`ifdef GL_TEST
-  wire VPWR = 1'b1;
-  wire VGND = 1'b0;
-`endif
+    initial begin
+        // this creates the waveform file for GTKWave
+        $dumpfile("alu_wave.vcd");
+        $dumpvars(0, alu_tb);
 
-  // Replace tt_um_example with your module name:
-  tt_um_example user_project (
+        // test ADD: 3 + 5 = 8
+        a = 4'd3; b = 4'd5; op = 3'b000; #10;
+        $display("ADD  3 + 5  = %0d", result);
 
-      // Include power ports for the Gate Level test:
-`ifdef GL_TEST
-      .VPWR(VPWR),
-      .VGND(VGND),
-`endif
+        // test SUB: 7 - 2 = 5
+        a = 4'd7; b = 4'd2; op = 3'b001; #10;
+        $display("SUB  7 - 2  = %0d", result);
 
-      .ui_in  (ui_in),    // Dedicated inputs
-      .uo_out (uo_out),   // Dedicated outputs
-      .uio_in (uio_in),   // IOs: Input path
-      .uio_out(uio_out),  // IOs: Output path
-      .uio_oe (uio_oe),   // IOs: Enable path (active high: 0=input, 1=output)
-      .ena    (ena),      // enable - goes high when design is selected
-      .clk    (clk),      // clock
-      .rst_n  (rst_n)     // not reset
-  );
+        // test AND: 1100 & 1010 = 1000
+        a = 4'b1100; b = 4'b1010; op = 3'b010; #10;
+        $display("AND  1100 & 1010 = %04b", result[3:0]);
+
+        // test OR: 1100 | 1010 = 1110
+        a = 4'b1100; b = 4'b1010; op = 3'b011; #10;
+        $display("OR   1100 | 1010 = %04b", result[3:0]);
+
+        // test XOR: 1100 ^ 1010 = 0110
+        a = 4'b1100; b = 4'b1010; op = 3'b100; #10;
+        $display("XOR  1100 ^ 1010 = %04b", result[3:0]);
+
+        // test MULTIPLY: 3 * 3 = 9
+        a = 4'd3; b = 4'd3; op = 3'b101; #10;
+        $display("MUL  3 * 3  = %0d", result);
+
+        $finish;
+    end
 
 endmodule
