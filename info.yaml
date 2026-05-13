@@ -1,41 +1,39 @@
-yaml_version: 1
-
 project:
-  title:       "4-bit ALU"
-  author:      "Ro0-0"
-  description: "Simple 4-bit ALU with add subtract multiply and logic operations"
-  language:    "Verilog"
-  top_module:  "tt_um_ro00_alu"
-  tiles:       "1x1"
-  clock_hz:    0
+  title:        "4-bit ALU"
+  author:       "Ro0-0"
+  discord:      ""
+  description:  "Simple 4-bit ALU with add subtract multiply and logic operations"
+  language:     "Verilog"
+  clock_hz:     0
+  tiles:        "1x1"
+  top_module:   "tt_um_ro00_alu"
   source_files:
-    - project.v
+    - "project.v"
 
 pinout:
-  ui:
-    - "a[0]"
-    - "a[1]"
-    - "a[2]"
-    - "a[3]"
-    - "b[0]"
-    - "b[1]"
-    - "b[2]"
-    - "b[3]"
-  uo:
-    - "result[0]"
-    - "result[1]"
-    - "result[2]"
-    - "result[3]"
-    - "result[4]"
-    - "none"
-    - "none"
-    - "none"
-  uio:
-    - "op[0]"
-    - "op[1]"
-    - "op[2]"
-    - "none"
-    - "none"
-    - "none"
-    - "none"
-    - "none"
+  ui[0]: "a[0]"
+  ui[1]: "a[1]"
+  ui[2]: "a[2]"
+  ui[3]: "a[3]"
+  ui[4]: "b[0]"
+  ui[5]: "b[1]"
+  ui[6]: "b[2]"
+  ui[7]: "b[3]"
+  uo[0]: "result[0]"
+  uo[1]: "result[1]"
+  uo[2]: "result[2]"
+  uo[3]: "result[3]"
+  uo[4]: "result[4]"
+  uo[5]: ""
+  uo[6]: ""
+  uo[7]: ""
+  uio[0]: "op[0]"
+  uio[1]: "op[1]"
+  uio[2]: "op[2]"
+  uio[3]: ""
+  uio[4]: ""
+  uio[5]: ""
+  uio[6]: ""
+  uio[7]: ""
+
+yaml_version: 6
